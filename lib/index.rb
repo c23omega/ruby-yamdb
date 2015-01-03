@@ -85,13 +85,13 @@ module Mdb
       puts "Adding Index for Data #{data} (Column #{column.name}) to Page #{page.number}" if @debug
       if data.nil?
         bin = [0, 0, 0, page.number, row].pack("CCCCC")
-      elsif @column.name == "Modified"
+      elsif @column.name == "Modified" # Maybe this is double?
         bin = [127, 194].pack("CC")
         binary = [data].pack("E")
         binary = binary[0..(binary.length-2)]
         bin += binary.reverse
         bin += [0, 0, page.number, row].pack("CCCC")
-      elsif @column.name == "Name"
+      elsif @column.name == "Name" # Maybe this is String?
         bin = [127].pack("C")
         data.length.times {|t| bin += [DATA_MAP[data[t].downcase]].pack("C") }
         bin += [1, 0, 0, 0, page.number, row].pack("CCCCCC")
