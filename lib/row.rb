@@ -221,7 +221,7 @@ module Mdb
         content = MdbBinary.new(pg.content[((start & 0x1fff)+4)..((start & 0x1fff)+size-1)])
         pg_row = pg.content.to_i32(start & 0x1fff)
         while (pg_row != 0)
-          pg, start, size = @table.find_page_row(pg_row)
+          pg, start, size = @table._find_page_row(pg_row)
           content += pg.content[(start & 0x1fff+4)..((start & 0x1fff)+size-1)]
           pg_row = pg.content.to_i32(start & 0x1fff)
         end
