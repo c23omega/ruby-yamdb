@@ -15,15 +15,19 @@ What is not working?
 Examples:
 
 Reading:
+```ruby
 db = Mdb::DBFile.new("mydb.mdb")
 db.tables # List Tables
 table = db.get_table("myTable")
 row = table.fetch_row
 puts row["myColumn"]
 db.close
+```
 
 Writing:
+```ruby
 db = Mdb::DBFile.new("mydb.mdb", true) # Last flag is writable
 table = db.get_table("myTable")
 table.insert_row("Col1Val", "Col2Val", ...)
 db.close
+```
